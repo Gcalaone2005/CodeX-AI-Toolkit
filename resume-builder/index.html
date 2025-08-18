@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+    <h2>Resume Builder</h2>
+    <form id="resumeForm">
+        <input type="text" placeholder="Full Name" id="name"><br>
+        <input type="text" placeholder="Email" id="email"><br>
+        <textarea placeholder="Skills (comma separated)" id="skills"></textarea><br>
+        <button type="button" onclick="generateResume()">Generate Resume</button>
+    </form>
+
+    <div id="resume" style="display:none; margin-top:20px;">
+        <h2 id="r_name"></h2>
+        <p>Email: <span id="r_email"></span></p>
+        <h3>Skills</h3>
+        <ul id="r_skills"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
