@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+
+<body>
+    <h2>QR Code Generator</h2>
+    <input type="text" id="qrText" placeholder="Enter text or URL">
+    <button onclick="generateQR()">Generate QR</button>
+    <br><br>
+    <canvas id="qrCanvas"></canvas>
+
+    <script>
+        function generateQR() {
+            let text = document.getElementById("qrText").value;
+            let canvas = document.getElementById("qrCanvas");
+            QRCode.toCanvas(canvas, text, function(error) {
+                if (error) console.error(error);
+                console.log("QR code generated!");
+            });
+        }
+    </script>
+</body>
+
+</html>
