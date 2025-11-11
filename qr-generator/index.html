@@ -12,12 +12,11 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
-      <div class="nav-left">
-        <h1 class="nav-logo">⚡ CodeX QR Generator</h1>
-      </div>
-      <div class="nav-right">
-        <a href="../index.html" class="nav-link">🏠 Home</a>
-        <a href="#features" class="nav-link">✨ Features</a>
+      <h1 class="nav-logo">⚡ CodeX QR Generator</h1>
+      <div class="nav-links">
+        <a href="../index.html">🏠 Home</a>
+        <a href="#features">✨ Features</a>
+        <button id="themeToggle" class="btn-theme">🌙</button>
       </div>
     </div>
   </nav>
@@ -25,85 +24,82 @@
   <!-- Hero Section -->
   <header class="hero">
     <div class="hero-content">
-      <h2>Turn Any Link into a Powerful <span>QR Code</span></h2>
-      <p class="subtitle">Quick. Custom. Branded.</p>
-      <p class="tagline">Perfect for business cards, menus, social links, and more.</p>
+      <h2>Design Your <span>Perfect QR Code</span></h2>
+      <p>Create, customize, and brand your QR instantly — all in one place.</p>
     </div>
   </header>
 
-  <!-- Main Generator Card -->
-  <main class="container">
-    <div class="card qr-card">
-      <h2>🎯 Generate Your QR Code</h2>
-      <p class="muted">Type a link, pick a color, add your logo — and download instantly.</p>
+  <!-- Main Generator Section -->
+  <section class="generator">
+    <div class="left-panel">
+      <h3>🧩 Customize Your QR</h3>
 
-      <!-- Input -->
-      <div class="form-group">
-        <input type="text" id="qrText" placeholder="Enter URL or text...">
-      </div>
+      <input type="text" id="qrText" placeholder="Enter your URL or text...">
 
-      <!-- Example Suggestions -->
-      <div class="suggestions">
+      <div class="example-row">
         <span class="chip-example" data-value="https://www.instagram.com/">Instagram</span>
-        <span class="chip-example" data-value="https://www.youtube.com/">YouTube Channel</span>
-        <span class="chip-example" data-value="https://github.com/">GitHub Profile</span>
-        <span class="chip-example" data-value="https://codex-ai-toolkit.example">My Portfolio</span>
+        <span class="chip-example" data-value="https://www.linkedin.com/">LinkedIn</span>
+        <span class="chip-example" data-value="https://github.com/">GitHub</span>
       </div>
 
-      <!-- Customization -->
       <div class="options">
-        <label>Size
-          <input type="number" id="qrSize" min="100" max="800" value="250">
-        </label>
-        <label>Color
+        <div class="opt">
+          <label>Size</label>
+          <input type="number" id="qrSize" value="250" min="100" max="800">
+        </div>
+        <div class="opt">
+          <label>Color</label>
           <input type="color" id="qrColor" value="#2563eb">
-        </label>
-        <label>Background
+        </div>
+        <div class="opt">
+          <label>Background</label>
           <input type="color" id="qrBg" value="#ffffff">
-        </label>
+        </div>
       </div>
 
-      <!-- Logo Upload -->
-      <div class="form-group">
-        <label>Upload Logo (optional)
-          <input type="file" id="logoInput" accept="image/*">
-        </label>
+      <div class="logo-upload">
+        <label>Upload Logo (optional)</label>
+        <input type="file" id="logoInput" accept="image/*">
         <div id="logoPreview" class="logo-preview">No logo selected</div>
       </div>
 
-      <!-- Buttons -->
-      <div class="btn-group">
+      <div class="button-row">
         <button id="generateBtn" class="btn">⚡ Generate</button>
         <button id="downloadBtn" class="btn secondary">⬇️ Download</button>
       </div>
-
-      <!-- QR Preview -->
-      <div class="qr-preview">
-        <canvas id="qrCanvas"></canvas>
-      </div>
     </div>
-  </main>
 
-  <!-- Feature Section -->
-  <section id="features" class="features">
-    <h2>💡 Why Choose CodeX QR Generator?</h2>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <h3>🎨 Custom Colors</h3>
-        <p>Choose any color and background to match your brand identity.</p>
-      </div>
-      <div class="feature-card">
-        <h3>🧩 Logo Branding</h3>
-        <p>Upload your logo and automatically center it inside your QR code.</p>
-      </div>
-      <div class="feature-card">
-        <h3>⚙️ Instant Download</h3>
-        <p>Generate and download your QR as a PNG in seconds.</p>
+    <div class="right-panel">
+      <div class="qr-card">
+        <h3>🔍 Live Preview</h3>
+        <canvas id="qrCanvas"></canvas>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Features -->
+  <section id="features" class="features">
+    <h2>✨ Features You’ll Love</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>🎨 Color Customization</h3>
+        <p>Choose any QR and background color to fit your brand identity.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🧠 Logo Overlay</h3>
+        <p>Add your logo directly in the center of the QR for brand recognition.</p>
+      </div>
+      <div class="feature-card">
+        <h3>⚡ Instant Preview</h3>
+        <p>See real-time updates while typing — no waiting required.</p>
+      </div>
+      <div class="feature-card">
+        <h3>💾 Easy Download</h3>
+        <p>Export high-resolution QR as PNG in one click.</p>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <p>Made with ❤️ by <b>Girish Chavan</b></p>
   </footer>
