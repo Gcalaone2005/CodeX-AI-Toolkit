@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ CodeX AI Resume Builder</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+
+<body class="theme-light">
+
+  <!-- 🌐 Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <h1 class="nav-logo">⚡ CodeX Resume Builder</h1>
+      </div>
+      <div class="nav-right">
+        <a href="../index.html" class="nav-link">🏠 Home</a>
+        <a href="#features" class="nav-link">✨ Features</a>
+        <button id="aiAutoFillBtn" class="btn-nav">⚡ AI Auto-Fill</button>
+        <button id="exportBundleBtn" class="btn-nav">📁 Export Bundle</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- Left Column — Form -->
+    <div class="card">
+      <h2>🧠 Resume Information</h2>
+      <div class="form-grid">
+
+        <label>Full Name <input id="name" type="text" placeholder="Your full name"></label>
+        <label>Job Title <input id="title" type="text" placeholder="Web Developer / Designer"></label>
+        <label>Email <input id="email" type="email" placeholder="you@example.com"></label>
+        <label>Phone <input id="phone" type="text" placeholder="+91 00000 00000"></label>
+        <label>Location <input id="location" type="text" placeholder="City, Country"></label>
+
+        <label>Profile Photo <input type="file" id="photoInput" accept="image/*"></label>
+        <div id="photoPreview" class="photo-preview">No photo selected.</div>
+        <button id="removePhotoBtn" class="inline-btn">Remove Photo</button>
+
+        <label>Summary
+          <textarea id="summary" placeholder="Write a short professional overview"></textarea>
+        </label>
+        <button type="button" id="aiSuggestBtn" class="inline-btn">💡 Get Suggestions</button>
+        <div id="aiSuggestionBox" class="card" style="display:none;margin-top:10px;">
+          <strong>Suggestions:</strong>
+          <ul id="aiSuggestionsList" style="margin-top:8px;list-style:disc;padding-left:20px;"></ul>
+        </div>
+
+        <label>Skills <input id="skillInput" type="text" placeholder="Type a skill and press Enter"></label>
+        <div id="skillsChips" class="chips"></div>
+
+        <h3>Experience</h3>
+        <div id="experienceList" class="list"></div>
+        <button id="addExpBtn" class="inline-btn">➕ Add Experience</button>
+
+        <h3>Education</h3>
+        <div id="educationList" class="list"></div>
+        <button id="addEduBtn" class="inline-btn">➕ Add Education</button>
+
+        <h3>Options</h3>
+        <label>Template
+          <select id="templateSelect">
+            <option value="classic">Classic</option>
+            <option value="modern" selected>Modern</option>
+            <option value="clean">Clean</option>
+          </select>
+        </label>
+
+        <label>Accent
+          <select id="accentSelect">
+            <option value="accent-blue" selected>Blue</option>
+            <option value="accent-green">Green</option>
+          </select>
+        </label>
+
+        <label>Custom Accent
+          <input type="color" id="customAccentPicker" value="#2563eb" style="width:100%;height:38px;border-radius:8px;border:1px solid #e6edf3;">
+        </label>
+
+        <label>Theme
+          <select id="themeSelect">
+            <option value="light" selected>Light</option>
+            <option value="dark">Dark</option>
+            <option value="minimal">Minimal</option>
+            <option value="corporate">Corporate</option>
+          </select>
+        </label>
+
+        <h3>Sections & Titles</h3>
+        <div class="row" style="flex-wrap:wrap;">
+          <label><input type="checkbox" id="toggleSummary" checked> <input id="titleSummary" value="Summary" class="section-title-input"></label>
+          <label><input type="checkbox" id="toggleExperience" checked> <input id="titleExperience" value="Experience" class="section-title-input"></label>
+          <label><input type="checkbox" id="toggleEducation" checked> <input id="titleEducation" value="Education" class="section-title-input"></label>
+          <label><input type="checkbox" id="toggleSkills" checked> <input id="titleSkills" value="Skills" class="section-title-input"></label>
+        </div>
+
+        <div class="controls">
+          <button id="saveBtn" class="btn">💾 Save Draft</button>
+          <button id="loadBtn" class="btn secondary">📂 Load</button>
+          <button id="clearBtn" class="btn ghost">🧹 Clear</button>
+          <button id="downloadBtn" class="btn">⬇️ Download PDF</button>
+          <div id="status" class="status"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Column — Resume Preview -->
+    <div class="card preview-card">
+      <h2>🧾 Resume Preview</h2>
+      <div id="previewContainer" class="tpl-modern accent-blue">
+        <div class="resume-preview" id="resumePreview">
+          <div class="res-header">
+            <div class="res-left">
+              <h2 id="pv_name"></h2>
+              <div class="res-title" id="pv_title"></div>
+              <div class="muted-inline" id="pv_contact"></div>
+              <div class="muted-inline" id="pv_location"></div>
+            </div>
+            <div class="res-right"><div class="res-photo" id="pv_photo"></div></div>
+          </div>
+
+          <div class="res-section res-summary-section"><h4>Summary</h4><p id="pv_summary"></p></div>
+          <div class="res-section res-experience-section"><h4>Experience</h4><div id="pv_experience"></div></div>
+          <div class="res-section res-education-section"><h4>Education</h4><div id="pv_education"></div></div>
+          <div class="res-section res-skills-section"><h4>Skills</h4><div id="pv_skills" class="chips"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Global Status -->
+  <div id="globalStatus" class="global-status" hidden>
+    <div class="spinner"></div>
+    <span id="statusText">Processing...</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
