@@ -1,73 +1,133 @@
-/* Reset */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
+/* ===== Reset & Base ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: "Inter", sans-serif; }
 body {
-    background: #f4f6f9;
-    color: #333;
-    text-align: center;
-    padding: 40px;
+  background: #f4f6f9;
+  color: #1e293b;
+  transition: background 0.4s, color 0.4s;
 }
 
-
-/* Heading */
-
-h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #2c3e50;
+/* ===== Navbar ===== */
+.navbar {
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  color: white;
+  padding: 14px 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo { font-size: 1.2rem; font-weight: 700; }
+.nav-links { display: flex; align-items: center; gap: 14px; }
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.btn-theme {
+  background: white;
+  color: #1e3a8a;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
 }
 
+/* ===== Hero ===== */
+.hero {
+  text-align: center;
+  padding: 70px 20px 40px;
+  background: linear-gradient(145deg, #eef2ff, #f8fafc);
+}
+.hero-content h2 { font-size: 2rem; color: #1e3a8a; margin-bottom: 8px; }
+.hero-content span { color: #2563eb; }
+.hero-content p { color: #475569; max-width: 600px; margin: 0 auto; }
 
-/* File Input */
+/* ===== Main ===== */
+.container { max-width: 600px; margin: 50px auto; padding: 0 20px; }
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  text-align: center;
+}
+.card h3 { color: #2563eb; margin-bottom: 16px; }
 
-input[type="file"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px dashed #0077ff;
-    border-radius: 8px;
-    background: #fff;
-    cursor: pointer;
-    transition: 0.3s;
+/* ===== Upload Box ===== */
+.upload-box {
+  border: 2px dashed #94a3b8;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 20px;
+  color: #475569;
+  background: #f8fafc;
+  transition: border-color 0.3s, background 0.3s;
+}
+.upload-box.dragover { border-color: #2563eb; background: #e0f2fe; }
+.file-label {
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-input[type="file"]:hover {
-    border-color: #005fcb;
-    background: #f0f8ff;
+/* ===== Quality Control ===== */
+.quality-control {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+#qualityRange { width: 200px; }
+#qualityValue { font-weight: 600; color: #2563eb; }
+
+/* ===== Preview ===== */
+.preview canvas {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  margin-bottom: 14px;
 }
 
-
-/* Canvas */
-
-canvas {
-    margin-top: 20px;
-    max-width: 90%;
-    border-radius: 12px;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    padding: 10px;
+/* ===== Info ===== */
+.info {
+  font-size: 14px;
+  color: #475569;
+  margin-bottom: 14px;
 }
 
+/* ===== Buttons ===== */
+.btn-group { display: flex; justify-content: center; }
+.btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.btn:hover { background: #1d4ed8; }
 
-/* Download Button */
-
-button {
-    margin-top: 20px;
-    padding: 12px 20px;
-    background: #0077ff;
-    border: none;
-    color: white;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+  margin-top: 60px;
+  padding-bottom: 30px;
 }
 
-button:hover {
-    background: #005fcb;
-}
+/* ===== Dark Mode ===== */
+body.dark { background: #0f172a; color: #e2e8f0; }
+body.dark .card, body.dark .upload-box { background: #1e293b; color: #e2e8f0; }
+body.dark .btn-theme { background: #334155; color: #e2e8f0; }
